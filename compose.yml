@@ -13,6 +13,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
     network_mode: bridge
+    restart: unless-stopped
 
   acme-companion:
     image: nginxproxy/acme-companion:2.2.9
@@ -26,6 +27,7 @@ services:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     network_mode: bridge
+    restart: unless-stopped
 
 volumes:
   conf:
